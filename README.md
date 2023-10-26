@@ -1,14 +1,14 @@
 # Authorization :
  Using the JWT token as request header to verify whether the request is made by an admin user or not .Below is the gist of code to accomplish this  authorization:
  
- 	
+ 	```
     const token = req.header("token") ;
 	if(!token) res.status(helperStatus.status.unauthorized).send("Not authorized") ;
        const payload = jwt.verify(token,process.env.SECRET_KEY) ;
        if(!payload.token.is_admin) return res.status(helperStatus.status.unauthorized).send("Not authorized") ;
        req.user = payload.user ;
        req.is_admin = payload.is_admin;
-	
+	```
 # Validation:
 
 Using @hapi/joi library validation of data entry at the time of creating and updating a user is performed.
